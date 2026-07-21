@@ -1,0 +1,26 @@
+.logo-svg { filter: drop-shadow(0 0 8px var(--accent-color, #ff4fd8)); }
+
+.logo-ring {
+  fill: none; stroke: var(--accent-color, #ff4fd8); stroke-width: 4;
+  stroke-dasharray: 314; stroke-dashoffset: 314; animation: drawRing 1.6s ease forwards;
+}
+
+.logo-ring-glow {
+  fill: none; stroke: var(--accent-secondary, #6f42ff); stroke-width: 2;
+  opacity: 0.5; animation: pulseGlow 2.4s ease-in-out infinite;
+}
+
+.logo-text { font-size: 28px; font-weight: 800; fill: currentColor; }
+
+@keyframes drawRing { to { stroke-dashoffset: 0; } }
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.btn-glow:hover { box-shadow: 0 0 18px var(--accent-color, #ff4fd8); }
+.glass-card { animation: fadeInUp 0.5s ease; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
