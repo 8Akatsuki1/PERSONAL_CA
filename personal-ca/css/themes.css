@@ -1,0 +1,27 @@
+body.theme-anime {
+  --accent-color: #ff4fd8;
+  --accent-secondary: #6f42ff;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 25%, #a18cd1 60%, #6f42ff 100%);
+  color: #2b2b3d;
+}
+
+body.theme-cyberpunk {
+  --accent-color: #00fff2;
+  --accent-secondary: #ff00c8;
+  background: radial-gradient(circle at top, #1a0033, #000010);
+  color: #e6faff;
+}
+
+body.theme-dark {
+  --accent-color: #7c5cff;
+  --accent-secondary: #4b32c3;
+  background: #12121a;
+  color: #f0f0f5;
+}
+
+body.theme-light {
+  --accent-color: #6f42ff;
+  --accent-secondary: #ff4fd8;
+  background: #f4f5fa;
+  color: #1c1c28;
+}
