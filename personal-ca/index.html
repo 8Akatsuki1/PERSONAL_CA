@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal CA — Login</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/themes.css">
+</head>
+<body class="theme-anime" data-page="login">
+
+  <div class="login-wrapper">
+    <div class="login-card glass-card">
+      <div class="logo-container">
+        <svg class="logo-svg" viewBox="0 0 120 120" width="90" height="90">
+          <circle class="logo-ring" cx="60" cy="60" r="50" />
+          <circle class="logo-ring-glow" cx="60" cy="60" r="50" />
+          <text x="60" y="70" class="logo-text" text-anchor="middle">CA</text>
+        </svg>
+        <h1 class="app-title">PERSONAL CA</h1>
+        <p class="app-subtitle">Your Cash, Your Control</p>
+      </div>
+
+      <form id="loginForm" class="login-form" autocomplete="off">
+        <div class="input-group">
+          <label for="passwordInput">Password</label>
+          <div class="password-field">
+            <input type="password" id="passwordInput" placeholder="Enter password" required autofocus>
+            <button type="button" id="togglePassword" class="icon-btn" aria-label="Show password">👁️</button>
+          </div>
+        </div>
+
+        <div id="loginError" class="error-message hidden"></div>
+        <button type="submit" class="btn-primary btn-glow">Login</button>
+
+        <div class="login-links">
+          <a href="#" id="forgotPasswordLink">Forgot password?</a>
+        </div>
+      </form>
+
+      <div id="hintPanel" class="hint-panel hidden">
+        <p class="hint-label">Your saved hint:</p>
+        <p id="hintText" class="hint-text">No hint set yet.</p>
+        <button id="closeHint" class="btn-secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/db.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
