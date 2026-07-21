@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal CA — Dashboard</title>
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="theme-anime" data-page="dashboard">
+
+  <nav class="app-navbar">
+    <button class="nav-btn" id="hamburgerBtn" aria-label="Menu">☰</button>
+    <div class="nav-title">PERSONAL CA</div>
+    <div class="nav-right-group">
+      <button class="nav-btn" id="backBtn" aria-label="Back">←</button>
+      <button class="nav-btn" id="refreshBtn" aria-label="Refresh">⟳</button>
+    </div>
+  </nav>
+
+  <main class="dashboard-container">
+
+    <div id="demoBanner" class="demo-banner hidden">
+      <span>You're viewing sample data.</span>
+      <button id="clearDemoBtn" class="btn-secondary btn-small">Clear Demo Data & Start Fresh</button>
+    </div>
+
+    <div class="greeting-block">
+      <h2 id="greetingText">Welcome back</h2>
+      <p id="currentDateText"></p>
+    </div>
+
+    <div class="glass-card hero-card">
+      <p class="hero-label">Current Balance</p>
+      <h1 id="currentBalance" class="hero-value">AED 0.00</h1>
+      <div class="hero-sub-row">
+        <span>Income: <strong id="totalIncome">AED 0</strong></span>
+        <span>Expenses: <strong id="totalExpenses">AED 0</strong></span>
+      </div>
+    </div>
+
+    <div class="tile-grid">
+      <div class="glass-card summary-tile"><p class="tile-label">Monthly Salary</p><p id="monthlySalary" class="tile-value">AED 0</p></div>
+      <div class="glass-card summary-tile"><p class="tile-label">Savings</p><p id="totalSavings" class="tile-value">AED 0</p></div>
+      <div class="glass-card summary-tile"><p class="tile-label">Today's Spending</p><p id="todaySpending" class="tile-value">AED 0</p></div>
+      <div class="glass-card summary-tile"><p class="tile-label">This Week</p><p id="weekSpending" class="tile-value">AED 0</p></div>
+      <div class="glass-card summary-tile"><p class="tile-label">This Month</p><p id="monthSpending" class="tile-value">AED 0</p></div>
+      <div class="glass-card summary-tile"><p class="tile-label">Remaining Budget</p><p id="remainingBudget" class="tile-value">AED 0</p></div>
+    </div>
+
+    <div class="glass-card progress-card">
+      <p class="progress-label">Expense Progress <span id="expenseProgressPct">0%</span></p>
+      <div class="progress-track"><div id="expenseProgressFill" class="progress-fill expense-fill"></div></div>
+
+      <p class="progress-label">Savings Progress <span id="savingsProgressPct">0%</span></p>
+      <div class="progress-track"><div id="savingsProgressFill" class="progress-fill savings-fill"></div></div>
+
+      <p class="progress-label">Daily Limit Used <span id="dailyLimitPct">0%</span></p>
+      <div class="progress-track"><div id="dailyLimitFill" class="progress-fill limit-fill"></div></div>
+    </div>
+
+    <div class="glass-card chart-card">
+      <p class="chart-title">Spending by Category</p>
+      <canvas id="pieChart" height="220"></canvas>
+    </div>
+
+    <div class="glass-card chart-card">
+      <p class="chart-title">Category Comparison</p>
+      <canvas id="barChart" height="220"></canvas>
+    </div>
+
+    <div class="glass-card chart-card">
+      <p class="chart-title">Monthly Comparison</p>
+      <canvas id="monthlyChart" height="220"></canvas>
+    </div>
+
+    <div class="glass-card recent-card">
+      <p class="chart-title">Recent Transactions</p>
+      <div id="recentList" class="recent-list"></div>
+    </div>
+
+  </main>
+
+  <div id="quickAddModal" class="modal-overlay hidden">
+    <div class="modal-box glass-card">
+      <h3>Quick Add Expense</h3>
+      <div class="input-group">
+        <label>Amount</label>
+        <input type="number" id="quickAmount" placeholder="0.00" step="0.01">
+      </div>
+      <div class="input-group">
+        <label>Category</label>
+        <select id="quickCategory"></select>
+      </div>
+      <div class="input-group">
+        <label>Date</label>
+        <input type="date" id="quickDate">
+      </div>
+      <div class="modal-actions">
+        <button id="quickAddCancel" class="btn-secondary">Cancel</button>
+        <button id="quickAddSave" class="btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-navbar">
+    <button class="bottom-nav-btn" id="homeBtn"><span class="bn-icon">🏠</span><span class="bn-label">Home</span></button>
+    <button class="bottom-nav-fab" id="quickAddBtn" aria-label="Quick Add Expense">+</button>
+    <button class="bottom-nav-btn" id="settingsBtn"><span class="bn-icon">⚙️</span><span class="bn-label">Settings</span></button>
+  </nav>
+
+  <div id="hamburgerOverlay" class="hamburger-overlay hidden">
+    <div class="hamburger-panel glass-card">
+      <div class="hamburger-header"><span>Menu</span><button id="closeHamburger" class="icon-btn">✕</button></div>
+      <ul class="hamburger-list">
+        <li><a href="regions.html">🌍 Regional Overview</a></li>
+        <li><a href="reports.html">📊 Reports</a></li>
+        <li><a href="advisor.html">🤖 AI Advisor</a></li>
+        <li><a href="#" id="syncCenterLink">🔄 Sync Center</a></li>
+        <li><a href="#" id="exitAppLink">🚪 Exit</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/db.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/nav-menu.js"></script>
+  <script src="libs/chart.min.js"></script>
+  <script src="js/recurring.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
